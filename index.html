@@ -17,7 +17,8 @@ body{font-family:'Barlow',system-ui,sans-serif;background:var(--navy);color:var(
 h1{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(40px,6vw,72px);line-height:.95;margin:18px 0 12px}
 h1 span{color:var(--gold)}
 p.lead{color:var(--muted);font-size:18px;max-width:640px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:40px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+@media(max-width:1000px) and (min-width:861px){.grid{grid-template-columns:1fr 1fr}}
 .card{display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:22px;background:linear-gradient(180deg,rgba(11,33,72,.92),rgba(7,23,51,.96));border:1px solid var(--ring);text-decoration:none;color:inherit;transition:transform 200ms cubic-bezier(.23,1,.32,1),border-color 200ms ease}
 .card:hover{transform:translateY(-3px);border-color:rgba(120,170,255,.4)}
 .card .l{font-family:'Anton',Impact,sans-serif;font-size:15px;color:#0A1633;background:var(--gold);border-radius:8px;padding:6px 9px;line-height:1;width:max-content;letter-spacing:.04em}
@@ -33,7 +34,7 @@ p.lead{color:var(--muted);font-size:18px;max-width:640px}
 <div class="wrap">
   <span class="eyebrow">Draft previews · Updated September 8, 2026</span>
   <h1>RoofNuts landing page <span>options</span></h1>
-  <p class="lead">Four directions for the new roofnuts.com home page. Every option has the same goal: get a roofer to start the free RoofNuts app. Open each one on your phone as well as your desktop.</p>
+  <p class="lead">Five directions for the new roofnuts.com home page. Every option has the same goal: get a roofer to start the free RoofNuts app. Open each one on your phone as well as your desktop.</p>
   <div class="grid">
     <a class="card" href="roofnuts-option-a-command-center.html">
       <span class="l">Option A</span>
@@ -62,6 +63,13 @@ p.lead{color:var(--muted);font-size:18px;max-width:640px}
       <p>An outcome headline with the real Weather &amp; Property Map in the hero. Then a phone tour built from real app screens, setup steps, the free plan spelled out with its limits, one free plan with paid plans folded away, a compact services grid, and FAQ.</p>
       <span class="look">Look at: the hero, the tour screens, the free plan section, the pricing layout</span>
       <span class="btn">Open Option D →</span>
+    </a>
+    <a class="card" href="roofnuts-option-e-command-center-tour.html">
+      <span class="l">Option E</span>
+      <h2>Command Center + Tour</h2>
+      <p>Option A's hero and page, with a phone tour built from real app screens placed right after it. Then setup steps, the free plan spelled out, ecosystem cards, Rufus AI, pricing, proof, and FAQ.</p>
+      <span class="look">Look at: the hero hub, the tour screens, the free plan tiles</span>
+      <span class="btn">Open Option E →</span>
     </a>
   </div>
   <p class="note">These are unlisted drafts and are not indexed by search engines. Sign-up buttons point to roofnutsapp.com/signup and the store badges point to the live App Store and Google Play listings.</p>
