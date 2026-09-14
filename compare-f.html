@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Option F — before and after</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#050F24;--navy2:#0A1A35;--blue:#2B8CFF;--yellow:#FFD500;--white:#F7F9FC;--muted:#B7C4D8;--ring:rgba(183,196,216,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--navy);color:var(--white);display:flex;flex-direction:column;overflow:hidden}
+header{padding:14px 20px;border-bottom:1px solid var(--ring);display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--navy2)}
+h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;text-transform:uppercase;letter-spacing:.01em}
+h1 span{color:var(--yellow)}
+.ctl{display:flex;gap:8px;align-items:center;margin-left:auto;flex-wrap:wrap}
+.ctl button,.ctl label{font:600 13px 'Inter',sans-serif;color:var(--white);background:rgba(255,255,255,.06);border:1px solid var(--ring);border-radius:8px;padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.ctl button.on{background:var(--yellow);color:var(--navy);border-color:var(--yellow)}
+details{border-bottom:1px solid var(--ring);background:var(--navy2)}
+summary{cursor:pointer;padding:10px 20px;font-weight:700;font-size:14px;color:var(--yellow)}
+.changes{padding:0 20px 14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:6px 24px;font-size:13.5px;color:var(--muted)}
+.changes li{list-style:none;display:flex;gap:8px}
+.changes li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue);flex:none;margin-top:7px}
+.changes b{color:var(--white)}
+main{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;min-height:0}
+main.solo-a .col.b,main.solo-b .col.a{display:none}
+main.solo-a,main.solo-b{grid-template-columns:1fr}
+.col{display:flex;flex-direction:column;min-height:0;border:1px solid var(--ring);border-radius:12px;overflow:hidden;background:#fff}
+.col .lbl{padding:8px 12px;font:700 12px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;background:var(--navy2);color:var(--muted)}
+.col.b .lbl{color:var(--yellow)}
+.view{flex:1;position:relative;overflow:hidden}
+.view iframe{position:absolute;left:0;top:0;width:1280px;height:100%;border:0;transform-origin:0 0;background:#fff}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Option F <span>before / after</span></h1>
+  <div class="ctl">
+    <button id="side" class="on">Side by side</button><button id="onlyA">Before only</button><button id="onlyB">After only</button>
+    <label><input type="checkbox" id="sync" checked> Sync scroll</label>
+    <a href="index.html" style="font:600 13px 'Inter';color:var(--muted);margin-left:8px">All options →</a>
+  </div>
+</header>
+<details open>
+  <summary>What changed (Jay's notes, September 14)</summary>
+  <ul class="changes">
+    <li><span><b>Hero:</b> "Lead creation app" is yellow instead of blue.</span></li>
+    <li><span><b>Hero:</b> feature row grew from 6 to 8: added Exclusive lead alerts, CRM integration, Full lead management; "And more" removed.</span></li>
+    <li><span><b>Hero phone:</b> recent lead rows carry an "Exclusive" tag.</span></li>
+    <li><span><b>How it works:</b> step 5 "Get paid / Contract signed" became "Push to your CRM" with CRM marks (JobNimbus, AccuLynx, HubSpot, Salesforce, ProLine).</span></li>
+    <li><span><b>Free section:</b> "Full access to core features" became "No contracts or credit card required".</span></li>
+    <li><span><b>Ecosystem:</b> RoofNutsHire replaced by RoofNutsSEO ("Rank. Get Found. Get Calls.").</span></li>
+  </ul>
+</details>
+<main id="main">
+  <div class="col a"><div class="lbl">Before · as built from Jay's mockup</div><div class="view"><iframe id="fa" src="roofnuts-option-f-lead-to-payday.html" title="Option F before"></iframe></div></div>
+  <div class="col b"><div class="lbl">After · notes applied</div><div class="view"><iframe id="fb" src="roofnuts-option-f2-lead-to-payday-revised.html" title="Option F after"></iframe></div></div>
+</main>
+<script>
+(function(){
+  var main=document.getElementById('main'),fa=document.getElementById('fa'),fb=document.getElementById('fb'),sync=document.getElementById('sync');
+  function fit(){[fa,fb].forEach(function(f){var v=f.parentElement;var s=v.clientWidth/1280;f.style.transform='scale('+s+')';f.style.height=(v.clientHeight/s)+'px'})}
+  window.addEventListener('resize',fit);fit();
+  function mode(m,btn){main.className=m;document.querySelectorAll('.ctl button').forEach(function(b){b.classList.remove('on')});btn.classList.add('on');setTimeout(fit,30)}
+  document.getElementById('side').onclick=function(){mode('',this)};
+  document.getElementById('onlyA').onclick=function(){mode('solo-a',this)};
+  document.getElementById('onlyB').onclick=function(){mode('solo-b',this)};
+  var lock=false;
+  function link(src,dst){try{src.contentWindow.addEventListener('scroll',function(){if(!sync.checked||lock)return;lock=true;var d=src.contentDocument.documentElement;var p=d.scrollTop/Math.max(1,d.scrollHeight-d.clientHeight);var e=dst.contentDocument.documentElement;dst.contentWindow.scrollTo(0,p*(e.scrollHeight-e.clientHeight));setTimeout(function(){lock=false},40)})}catch(err){}}
+  fa.addEventListener('load',function(){link(fa,fb)});fb.addEventListener('load',function(){link(fb,fa)});
+})();
+</script>
+</body>
+</html>
