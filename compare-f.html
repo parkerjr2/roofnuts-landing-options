@@ -67,8 +67,7 @@ main.solo-a,main.solo-b{grid-template-columns:1fr}
   document.getElementById('side').onclick=function(){mode('',this)};
   document.getElementById('onlyA').onclick=function(){mode('solo-a',this)};
   document.getElementById('onlyB').onclick=function(){mode('solo-b',this)};
-  var lock=false;
-  function link(src,dst){try{src.contentWindow.addEventListener('scroll',function(){if(!sync.checked||lock)return;lock=true;var d=src.contentDocument.documentElement;var p=d.scrollTop/Math.max(1,d.scrollHeight-d.clientHeight);var e=dst.contentDocument.documentElement;dst.contentWindow.scrollTo(0,p*(e.scrollHeight-e.clientHeight));setTimeout(function(){lock=false},40)})}catch(err){}}
+  function link(src,dst){try{src.contentWindow.addEventListener('scroll',function(){if(!sync.checked)return;var sw=src.contentWindow,dw=dst.contentWindow;var sd=src.contentDocument.documentElement,dd=dst.contentDocument.documentElement;var p=sw.scrollY/Math.max(1,sd.scrollHeight-sw.innerHeight);var target=p*(dd.scrollHeight-dw.innerHeight);if(Math.abs(dw.scrollY-target)>2){dw.scrollTo({top:target,behavior:'instant'})}},{passive:true})}catch(err){}}
   fa.addEventListener('load',function(){link(fa,fb)});fb.addEventListener('load',function(){link(fb,fa)});
 })();
 </script>
